@@ -7,10 +7,12 @@
 
   "browser_action": {
     "default_icon": "icon.png",
-    "default_popup": "popup.html",
+    "default_popup": "popup.html"
   },
-  "content_scripts": {
-    "matches": ["https://medpix.nlm.nih.gov/*"],
-    "js": ["myScript.js"]
-  }
+  "content_scripts": [
+    {
+      "matches": ["https://medpix.nlm.nih.gov/*","https://app.figure1.com/*"],
+      "js": ["jquery-3.2.1.min.js","myScript.js"]
+    }
+  ]
 }
