@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
     fig1Button.addEventListener('click', showMarkersFig1);
   }
 
-  function showMarkersFig1() {
+function showMarkersFig1() {
     chrome.tabs.query({ active: true, currentWindow: true}, function(activeTabs) {
-        chrome.tabs.sendMessage(activeTabs[0].id, { action: 'executeCode' });
+        chrome.tabs.sendMessage(activeTabs[0].id, { action: 'injectButtonOnFigure1Page' });
     });
   }
 });
+
 
