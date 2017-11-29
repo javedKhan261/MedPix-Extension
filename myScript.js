@@ -49,7 +49,7 @@ chrome.runtime.onMessage.addListener(function(request) {
      }
 });
 
-curofy_admin_url = 'http://127.0.0.1:8000/add_content_user';
+curofy_admin_url = 'https://admin.curofy.com/add_content_user';
 
 function create_div_for_thumbnail(src,extraClass,disabled,fileName,caption) {
      var div = document.createElement("div");

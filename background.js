@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener(function(request) {
 		var obj = {};
 		obj[key] = request.message;
 		chrome.storage.local.set(obj, function(){
-		    chrome.tabs.create({ url : 'http://127.0.0.1:8000/add_content_user?figure1_unique_data_id='+request.figure1_unique_data_id});
+		    chrome.tabs.create({ url : 'https://admin.curofy.com/add_content_user?figure1_unique_data_id='+request.figure1_unique_data_id});
 		});
   	}
 });
