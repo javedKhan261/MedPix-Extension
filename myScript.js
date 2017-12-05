@@ -34,6 +34,10 @@ chrome.runtime.onMessage.addListener(function(request) {
            			full_image_src = thumbnail_src_split[0]+'&'+suffix_for_full_size_image;
            			image_src_array.push(full_image_src);
            		}
+                    if (image_set_thumbmail_elements.length==0) {
+                         image_src_array.push(location.origin+main_image_src);
+                    }
+
 
            		var data_to_send = {};
            		data_to_send['description'] = main_case_description;
@@ -78,6 +82,9 @@ if (location.href.includes(curofy_admin_url+'?figure1_unique_data_id=')) {
           console.log(data_to_be_filled);
           $('textarea[name="body"]').val(data_to_be_filled['description']);
           $('input[name="discussion_reference_link"]').val(data_to_be_filled['resource_url']);
+          setTimeout(function() { 
+               $('input[name="discussion_reference_link"]').trigger('change');
+          }, 1000);
           $('input[name="cookie"]').val(data_to_be_filled['cookie']);
           var output = document.getElementById("result");
           for(var i=0;i<data_to_be_filled.images.length;i++) {
