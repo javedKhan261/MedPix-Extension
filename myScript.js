@@ -21,23 +21,27 @@ chrome.runtime.onMessage.addListener(function(request) {
            		main_case_div = $(this).parent();
                     data_id = main_case_div.attr('data-id');
                     resource_url = location.href+"?image="+main_case_div.attr('data-id');
-                    main_case_description = main_case_div.find('.main-case-info').find('.caption').text();
-           		image_section = main_case_div.find('.image-section');
-           		main_image_src = image_section.find('.detailed-image-wrapper').find('img').attr('src');
-           		main_image_src_spilt = main_image_src.split('&');
-           		suffix_for_full_size_image = main_image_src_spilt[main_image_src_spilt.length-1];
-           		image_set_thumbmail_elements = image_section.find('.image-set-thumbnails').find('li').find('img');
-           		image_src_array = [];
-           		for(i=0;i<image_set_thumbmail_elements.length;i++) {
-           			thumbnail_src = image_set_thumbmail_elements[i].src;
-           			thumbnail_src_split = thumbnail_src.split('&');
-           			full_image_src = thumbnail_src_split[0]+'&'+suffix_for_full_size_image;
-           			image_src_array.push(full_image_src);
-           		}
-                    if (image_set_thumbmail_elements.length==0) {
-                         image_src_array.push(location.origin+main_image_src);
-                    }
+                    image_src_array = [];
+                    if (main_case_div.find('.text-case-card__main-content')[0]) {
+                         main_case_description = main_case_div.find('.text-case-card__caption').text();
+                    } else {
+                         main_case_description = main_case_div.find('.main-case-info').find('.caption').text();
+                         image_section = main_case_div.find('.image-section');
+                         main_image_src = image_section.find('.detailed-image-wrapper').find('img').attr('src');
+                         main_image_src_spilt = main_image_src.split('&');
+                         suffix_for_full_size_image = main_image_src_spilt[main_image_src_spilt.length-1];
+                         image_set_thumbmail_elements = image_section.find('.image-set-thumbnails').find('li').find('img');
+                         for(i=0;i<image_set_thumbmail_elements.length;i++) {
+                              thumbnail_src = image_set_thumbmail_elements[i].src;
+                              thumbnail_src_split = thumbnail_src.split('&');
+                              full_image_src = thumbnail_src_split[0]+'&'+suffix_for_full_size_image;
+                              image_src_array.push(full_image_src);
+                         }
+                         if (image_set_thumbmail_elements.length==0) {
+                              image_src_array.push(location.origin+main_image_src);
+                         }
 
+                    }
 
            		var data_to_send = {};
            		data_to_send['description'] = main_case_description;
