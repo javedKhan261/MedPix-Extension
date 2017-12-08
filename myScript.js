@@ -44,7 +44,7 @@ chrome.runtime.onMessage.addListener(function(request) {
                     }
 
            		var data_to_send = {};
-           		data_to_send['description'] = main_case_description;
+           		data_to_send['description'] = main_case_description.trim();
            		data_to_send['images'] = image_src_array;
                     data_to_send['resource_url'] = resource_url;
                     data_to_send['cookie'] = document.cookie;
